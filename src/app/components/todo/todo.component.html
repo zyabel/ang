@@ -1,0 +1,22 @@
+<div class="container">
+  <!-- Generate todo cards -->
+  <!-- Alert --> 
+  <div class="alert alert-info" *ngIf="todos.length === 0">Empty list</div>
+  <div class="row">
+    <div class="col-4" *ngFor="let task of todos; trackBy:identify">
+      <div class="card mt-5" [ngClass]="{'text-white bg-secondary': task.complete}">
+        <div class="card-body">
+          <h5 class="card-title">{{task.title}}</h5>
+          <p class="card-text">{{task.text}}</p>
+          <button class="btn m-1" 
+            [ngClass]="{'btn-success': !task.complete, 'btn-primary': task.complete}"
+            (click)="task.complete = !task.complete;"
+          >
+            {{ task.complete ? 'Incomplete' : 'Complete' }}
+          </button>
+          <button class="btn btn-danger m-1" (click)="deleteTask(task.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
