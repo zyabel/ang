@@ -1,7 +1,32 @@
 <div class="container">
-  <!-- Generate todo cards -->
+  <!-- Form -->
+
+  <div class="row">
+    <div class="col-6 m-auto">
+      <div class="card mb-5">
+        <div class="card-body">
+          <form (ngSubmit)="addTodo(form)" #form="ngForm">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title" [(ngModel)]="todo.title" name="title">
+            </div>
+            <div class="form-group">
+              <label for="text">Text</label>
+              <input type="text" class="form-control" id="text" [(ngModel)]="todo.text" name="text">
+            </div>
+            <button class="btn btn-primary" [disabled]="!todo.text || !todo.title"> Add task</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Alert --> 
+
   <div class="alert alert-info" *ngIf="todos.length === 0">Empty list</div>
+
+  <!-- Generate todo cards -->
+
   <div class="row">
     <div class="col-4" *ngFor="let task of todos; trackBy:identify">
       <div class="card mt-5" [ngClass]="{'text-white bg-secondary': task.complete}">

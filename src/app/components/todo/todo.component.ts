@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Todo } from '../../models/Todo'
 
 @Component({
@@ -8,6 +8,15 @@ import { Todo } from '../../models/Todo'
 })
 export class TodoComponent implements OnInit {
   todos: Todo[];
+
+  todo: Todo = {
+    id: '',
+    title: '',
+    text: '',
+    complete: false
+  };
+
+  @ViewChild('form') form;
 
   constructor() { }
     
@@ -44,5 +53,19 @@ export class TodoComponent implements OnInit {
   // TrackBy
   identify(index) {
     return index;
+  }
+
+  // Add task
+  addTodo() {
+    const newTask = {
+      id: String(this.todos.length + 1),
+      title: this.todo.title,
+      text: this.todo.text,
+      complete: false
+    };
+
+    this.todos.push(newTask);
+
+    this.form.reset();
   }
 }
