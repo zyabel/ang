@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class Header {
-  links: Array = [
+  links: Array<T> = [
     {
       name: 'link'
     },

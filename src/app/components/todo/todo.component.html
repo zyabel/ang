@@ -5,7 +5,7 @@
     <div class="col-6 m-auto">
       <div class="card mb-5">
         <div class="card-body">
-          <form (ngSubmit)="addTodo(form)" #form="ngForm">
+          <form (ngSubmit)="addTodo()" #form="ngForm">
             <div class="form-group">
               <label for="title">Title</label>
               <input type="text" class="form-control" id="title" [(ngModel)]="todo.title" name="title">
