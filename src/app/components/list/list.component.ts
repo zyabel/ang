@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JsonplaceholderService } from '../../services/jsonplaceholder.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-import { Task } from '../../models/Task'
+import { Task } from '../../models/Task';
 
 @Component({
   selector: 'app-list',
@@ -21,33 +21,34 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     // Get all tasks
      this.server.getTasks().subscribe( data => {
-       if(data) {
+       if (data) {
          this.tasks = data;
        }
      }, error => {
        console.log(error);
      });
 
-     //Subscribe on new task event
+     // Subscribe on new task event
      this.server.newTask.subscribe((data: Task) => {
-      if(data['body']) {
+      if (data['body']) {
         const newTask = Object.assign( {},  data['body'], { id: data.id } );
         this.tasks.unshift(newTask);
         this.server.updateCount(this.tasks.length);
       }
-     })
-      //Subscribe on update task 
+     });
+
+      // Subscribe on update task
       this.server.updatingTask.subscribe((task: Task) => {
-        if(task['body']) {
+        if (task['body']) {
           this.tasks = this.tasks.map(item => {
-            if(item.id === task.id) {
+            if (item.id === task.id) {
               item.title = task['body'].title;
             }
 
             return item;
           });
         }
-      })
+      });
   }
 
   indentify(index) {
@@ -57,9 +58,11 @@ export class ListComponent implements OnInit {
   deleteTask(id) {
     this.server.deleteTask(id).subscribe( data => {
       this.tasks = this.tasks.filter( task => task.id !== id );
+
       // Update count task
       this.server.updateCount(this.tasks.length);
-      //Shoe message
+
+      // Shoe message
       this.flashMessage.show('Delete success', {
         cssClass: 'alert-success',
         showCloseBtn: true,
@@ -67,12 +70,12 @@ export class ListComponent implements OnInit {
         timeout: 10000
       });
     }, error => {
-        this.flashMessage.show(error.message,{
+        this.flashMessage.show(error.message, {
         cssClass: 'alert-danger',
         showCloseBtn: true,
         closeOnClick: true,
         timeout: 10000
-      })
+      });
     });
   }
 

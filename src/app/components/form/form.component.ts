@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { JsonplaceholderService } from '../../services/jsonplaceholder.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
-import { Task } from '../../models/Task'
+import { Task } from '../../models/Task';
 
 @Component({
   selector: 'app-form',
@@ -24,24 +24,24 @@ export class FormComponent implements OnInit {
   ngOnInit() {
     // Subscribe on edit
     this.server.editingTask.subscribe((task: Task) => {
-      if(task.title) {
+      if (task.title) {
         this.isEdit = true;
         this.title = task.title;
         this.currentTaskId = task.id;
       }
-    })
+    });
   }
 
-  addTask() {    
+  addTask() {
     const newTask: Task = {
       userId: 1,
       completed: false,
       title: this.title
     };
 
-    //Add task
+    // Add task
     this.server.addTask(newTask).subscribe( (data: Task) => {
-      console.log("Add task", data);
+      console.log('Add task', data);
       this.form.reset();
       this.server.emitNewTask(data);
       this.flashMessage.show('Success', {
@@ -51,13 +51,13 @@ export class FormComponent implements OnInit {
         timeout: 10000
       });
     }, error => {
-      this.flashMessage.show(error.message,{
+      this.flashMessage.show(error.message, {
         cssClass: 'alert-danger',
         showCloseBtn: true,
         closeOnClick: true,
         timeout: 10000
-      })
-    })
+      });
+    });
   }
 
   editTask() {
@@ -66,7 +66,8 @@ export class FormComponent implements OnInit {
       userId: 1,
       completed: false,
       title: this.title
-    }
+    };
+
     // Update task
     this.server.editTask(updateTask).subscribe((task: Task) => {
       console.log(task);
@@ -79,12 +80,12 @@ export class FormComponent implements OnInit {
         timeout: 10000
       });
     }, error => {
-      this.flashMessage.show(error.message,{
+      this.flashMessage.show(error.message, {
         cssClass: 'alert-danger',
         showCloseBtn: true,
         closeOnClick: true,
         timeout: 10000
-      })
-    })
+      });
+    });
   }
 }
