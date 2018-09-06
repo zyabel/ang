@@ -43,7 +43,7 @@ export class AddBookComponent implements OnInit {
 
     this.bookServices.addBook(this.newBook);
 
-    if (this.newBook) {
+    if (name && description && author !== undefined) {
       this.router.navigate(['/panel']);
     }
   }
