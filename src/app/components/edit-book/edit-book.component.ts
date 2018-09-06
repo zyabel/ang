@@ -30,6 +30,7 @@ export class EditBookComponent implements OnInit {
   editBook() {
     const updateBook = Object.assign( {}, this.book);
     this.bookServices.editBook(updateBook).subscribe((book: Book) => {
+      console.log('edit', book, updateBook);
       if (book) {
         this.router.navigate(['/panel']);
       }

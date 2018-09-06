@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/Book';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { BooksService } from '../../services/books.service';
+import { IdService } from '../../services/id.service';
 
 @Component({
   selector: 'app-add-book',
@@ -8,21 +10,41 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./add-book.component.css']
 })
 export class AddBookComponent implements OnInit {
-  newBook: Book[];
+  newId: string;
+  newBook: Book;
 
   constructor(
-    public activateRoute: ActivatedRoute,
+    public bookServices: BooksService,
+    public idService: IdService,
     public router: Router
   ) { }
 
   ngOnInit() {
+    this.newId = this.idService.generate();
   }
 
-  addBook(name, description, author, link1, link2) {
-    console.log(name, description, author, link1, link2);
-    if (name && description && author) {
+  addBook(name: string, description: string, author: string, link1: string, link2: string) {
+    this.newBook = {
+      id: this.newId,
+      name: name,
+      description: description,
+      author: author,
+      link: [
+        {
+          type: 'epub',
+          link: link1
+        },
+        {
+          type: 'pdf',
+          link: link2
+        }
+      ]
+    };
+
+    this.bookServices.addBook(this.newBook);
+
+    if (this.newBook) {
       this.router.navigate(['/panel']);
     }
   }
-
 }

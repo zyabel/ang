@@ -20,4 +20,8 @@ export class PanelComponent implements OnInit {
     this.bookService.getBooks().subscribe(books => this.books = books);
   }
 
+  deleteBook(id: string) {
+    this.bookService.deleteBook(id).subscribe(books => this.books = books);
+  }
+
 }

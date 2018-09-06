@@ -44,7 +44,7 @@ export class BooksService {
       ]
     },
     {
-      id: '71e9a7bc-fbe8-4384-842f-65a17aed5e0d',
+      id: '71e9a7bc-fbe8-4384-842f-65a17aed5e0c',
       name: 'React',
       author: 'Facebook',
       description: 'description of book',
@@ -75,7 +75,7 @@ export class BooksService {
   }
 
   addBook(book: Book) {
-
+    this.books.push(book);
   }
 
   editBook(book: Book) {
@@ -89,6 +89,7 @@ export class BooksService {
   }
 
   deleteBook(id: string) {
-
+    this.books = this.books.filter( book => book.id !== id);
+    return of(this.books);
   }
 }
