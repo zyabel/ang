@@ -1,13 +1,14 @@
 <div class="container">
   <a routerLink='/addbook' class="btn btn-primary  mt-3">Add new book</a>
-  <div class="alert alert-dark mt-5" *ngIf="books.length === 0">Book list is empty</div>
+  <div class="alert alert-dark mt-5" *ngIf="!books">Book list is empty</div>
   <div class="row mt-3">
     <div class="col-4" *ngFor="let book of books">
       <div class="card card-body mt-3">
         <div class="card-title">{{book.name}}</div>
         <span class="text-info">{{book.author}}</span>
         <p class="card-text">{{book.description}}</p>
-        <a href="{{link.link}}" *ngFor="let link of book.link">{{link.type}}</a>
+        <p class="card-text">{{book.price}}</p>
+        <a href="{{link.link}}" *ngFor="let link of book.links">{{link.type}}</a>
         <button class="btn btn-danger mt-3" (click)="deleteBook(book.id)">Delete</button>
         <a routerLink='/books/{{book.id}}' class="btn btn-primary mt-3">Edit</a>
       </div>

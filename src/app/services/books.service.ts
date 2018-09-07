@@ -1,86 +1,40 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Book } from '../models/Book';
+import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
-  books: Book[] = [
-    {
-      id: '71e9a7bc-fbe8-4384-842f-65a17aed5e0e',
-      name: 'Javascript',
-      author: 'Marijn Haverbeke',
-      description: 'description of book',
-      link: [
-        {
-          type: 'epub',
-          link: 'link'
-        },
-        {
-          type: 'pdf',
-          link: 'link'
-        }
-      ]
-    },
-    {
-      id: '71e9a7bc-fbe8-4384-842f-65a17aed5e0d',
-      name: 'Angular',
-      author: 'Google',
-      description: 'description of book',
-      link: [
-        {
-          type: 'epub',
-          link: 'link'
-        },
-        {
-          type: 'pdf',
-          link: 'link'
-        }
-      ]
-    },
-    {
-      id: '71e9a7bc-fbe8-4384-842f-65a17aed5e0c',
-      name: 'React',
-      author: 'Facebook',
-      description: 'description of book',
-      link: [
-        {
-          type: 'epub',
-          link: 'link'
-        },
-        {
-          type: 'pdf',
-          link: 'link'
-        }
-      ]
-    }
-  ];
+  booksCollection: AngularFirestoreCollection<Book>;
+  bookDoc: AngularFirestoreDocument<Book>;
+  books: Observable<Book[]>;
+  book: Observable<Book>;
 
   constructor(
-    // private http: HttpClient
-  ) { }
+    private afs: AngularFirestore
+  ) {
+    this.booksCollection = this.afs.collection('books');
+  }
 
   getBooks() {
-    return of(this.books);
-  }
+    this.books  = this.booksCollection.snapshotChanges().map( collection => {
+      return collection.map( document => {
+        const data = document.payload.doc.data() as Book;
+        data.id = document.payload.doc.id;
+        return data;
+      });
+    });
 
-  getBookById(id: string) {
-    const book = this.books.find( book => book.id === id);
-    return of(book);
+    return this.books;
   }
-
   addBook(book: Book) {
-    this.books.push(book);
+    this.books.push(this.books);
   }
 
   editBook(book: Book) {
-    this.books = this.books.map( item => {
-      if (item.id === book.id) {
-        item = book;
-      }
-      return item;
-    });
     return of(book);
   }
 
