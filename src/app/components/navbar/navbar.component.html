@@ -11,7 +11,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="collapsibleNavId">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0" *ngIf="isLogin">
       <li class="nav-item">
         <a class="nav-link" routerLink="/panel" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home </a>
       </li>
@@ -20,4 +20,6 @@
       </li>
     </ul>
   </div>
+  <button class="btn btn-danger" *ngIf="isLogin" (click)="logOut()">Logout</button>
+  <a routerLink='/login' class="btn btn-warning" *ngIf="!isLogin">Login</a>
 </nav>

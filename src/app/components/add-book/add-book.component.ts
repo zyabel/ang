@@ -12,6 +12,7 @@ import { IdService } from '../../services/id.service';
 export class AddBookComponent implements OnInit {
   newId: string;
   newBook: Book;
+  name: string; description: string; author: string; link1: string; link2: string;
 
   constructor(
     public bookServices: BooksService,
@@ -43,7 +44,7 @@ export class AddBookComponent implements OnInit {
 
     this.bookServices.addBook(this.newBook);
 
-    if (name && description && author !== undefined) {
+    if (this.newBook) {
       this.router.navigate(['/panel']);
     }
   }

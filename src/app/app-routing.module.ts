@@ -6,9 +6,11 @@ import { AddBookComponent } from './components/add-book/add-book.component';
 import { EditBookComponent } from './components/edit-book/edit-book.component';
 import { AboutComponent } from './components/about/about.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'panel', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'panel', component: PanelComponent },
   { path: 'about', component: AboutComponent },
   { path: 'addbook', component: AddBookComponent  },
