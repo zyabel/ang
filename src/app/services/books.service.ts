@@ -1,8 +1,4 @@
 import { Injectable } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { Observable } from 'rxjs/Observable';
-// import { map, catchError } from 'rxjs/operators;
-import { IdService } from './id.service';
 import { of } from 'rxjs';
 import { Book } from '../models/Book';
 
