@@ -27,7 +27,6 @@ export class PanelComponent implements OnInit {
 
     // Subscribe on currency update
     this.currencyService.selectedCurrency.subscribe( data => {
-      console.log('data', data);
       this.currentCurrency = Object.create(data.find( obj => obj.isActive));
     });
   }

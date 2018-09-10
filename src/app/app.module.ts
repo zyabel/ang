@@ -6,6 +6,8 @@ import { BooksService } from './services/books.service';
 import { IdService } from './services/id.service';
 import { AuthService } from './services/auth.service';
 import { CurrencyService } from './services/currency.service';
+import { BasketService } from './services/basket.service';
+import { OrderService } from './services/order.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -22,6 +24,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { CurrencyComponent } from './components/currency/currency.component';
+import { BasketComponent } from './components/basket/basket.component';
+import { ClientHomeComponent } from './components/client-home/client-home.component';
+import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
 
 
 @NgModule({
@@ -37,6 +42,9 @@ import { CurrencyComponent } from './components/currency/currency.component';
     RegisterComponent,
     CustomDatePipe,
     CurrencyComponent,
+    BasketComponent,
+    ClientHomeComponent,
+    ClientCheckoutComponent,
    ],
   imports: [
     BrowserModule,
@@ -50,7 +58,9 @@ import { CurrencyComponent } from './components/currency/currency.component';
     BooksService,
     IdService,
     AuthService,
-    CurrencyService
+    CurrencyService,
+    BasketService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

@@ -30,6 +30,7 @@ export class BooksService {
 
     return this.books;
   }
+
   addBook(book) {
     this.books.push(book);
   }
