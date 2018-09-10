@@ -9,4 +9,6 @@ export interface Book {
   author: string;
   description: string;
   link: BookLinks[];
+  price: number;
+  data: string;
 }

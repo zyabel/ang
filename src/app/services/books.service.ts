@@ -30,11 +30,11 @@ export class BooksService {
 
     return this.books;
   }
-  addBook(book: Book) {
-    this.books.push(this.books);
+  addBook(book) {
+    this.books.push(book);
   }
 
-  editBook(book: Book) {
+  editBook(book) {
     return of(book);
   }
 

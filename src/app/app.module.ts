@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BooksService } from './services/books.service';
 import { IdService } from './services/id.service';
 import { AuthService } from './services/auth.service';
+import { CurrencyService } from './services/currency.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -19,6 +20,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { CurrencyComponent } from './components/currency/currency.component';
 
 
 @NgModule({
@@ -32,6 +35,8 @@ import { RegisterComponent } from './components/register/register.component';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
+    CustomDatePipe,
+    CurrencyComponent,
    ],
   imports: [
     BrowserModule,
@@ -44,7 +49,8 @@ import { RegisterComponent } from './components/register/register.component';
   providers: [
     BooksService,
     IdService,
-    AuthService
+    AuthService,
+    CurrencyService
   ],
   bootstrap: [AppComponent]
 })

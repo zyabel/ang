@@ -1,17 +1,57 @@
 <div class="container">
-  <a routerLink='/addbook' class="btn btn-primary  mt-3">Add new book</a>
+  <div class="constrols d-flex aling-items-center mb-3">
+    <div class="col-2">
+      <a routerLink='/addbook' class="btn btn-primary  mt-3">Add new book</a>
+    </div>
+    <div class="col-4 mt-3">
+      <input type="text"
+             class="form-control"
+             name="searchText"
+             [(ngModel)]="searchText"
+             placeholder="Search book"
+             (keyup)="searchBook()"
+      >
+    </div>
+    <div class="col-4 mt-3">
+      <app-currency></app-currency>
+    </div>
+  </div>
+  
   <div class="alert alert-dark mt-5" *ngIf="!books">Book list is empty</div>
-  <div class="row mt-3">
+  <div class="row mt-3" *ngIf="!searchText">
     <div class="col-4" *ngFor="let book of books">
       <div class="card card-body mt-3">
-        <div class="card-title">{{book.name}}</div>
-        <span class="text-info">{{book.author}}</span>
-        <p class="card-text">{{book.description}}</p>
-        <p class="card-text">{{book.price}}</p>
+        <div class="card-title">Name: <span class="text-info">{{book.name}}</span></div>
+        <p class="card-text">Author: <span class="text-info">{{book.author}}</span></p>
+        <p class="card-text">Date: <span class="text-info">{{book.data | customDate:'ru-RU'}}</span></p>
+        <p class="card-text">Description: {{book.description}}</p>
+        <p class="card-text">Price: 
+          <span class="badge badge-success ml-auto lg">
+            {{book.price*currentCurrency['coeff'] | currency: currentCurrency['name']}} 
+          </span>
+        </p>
         <a href="{{link.link}}" *ngFor="let link of book.links">{{link.type}}</a>
         <button class="btn btn-danger mt-3" (click)="deleteBook(book.id)">Delete</button>
         <a routerLink='/books/{{book.id}}' class="btn btn-primary mt-3">Edit</a>
       </div>
     </div>
   </div>
+
+  <!-- Searching results -->
+  <div class="row mt-3" *ngIf="searchText">
+      <div class="alert alert-dark mt-5 col-12" *ngIf="searchText && !searchingResult.length">Books not found</div>
+      <!-- Alert block -->
+      <div class="col-4" *ngFor="let book of searchingResult">
+        <div class="card card-body mt-3">
+          <div class="card-title">Name: <span class="text-info">{{book.name}}</span></div>
+          <p class="card-text">Author: <span class="text-info">{{book.author}}</span></p>
+          <p class="card-text">Date: <span class="text-info">{{book.data | customDate:'ru-RU'}}</span></p>
+          <p class="card-text">Description: {{book.description}}</p>
+          <p class="card-text">Price: <span class="badge badge-success ml-auto">{{book.price | currency: 'USD': 'symbol': '3.0'}}</span></p>
+          <a href="{{link.link}}" *ngFor="let link of book.links">{{link.type}}</a>
+          <button class="btn btn-danger mt-3" (click)="deleteBook(book.id)">Delete</button>
+          <a routerLink='/books/{{book.id}}' class="btn btn-primary mt-3">Edit</a>
+        </div>
+      </div>
+    </div>
 </div>
