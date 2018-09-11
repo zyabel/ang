@@ -18,6 +18,17 @@ export class OrderService {
     this.ordersCollection = this.afs.collection('orders');
   }
 
+  getOrders() {
+    return this.orders = this.ordersCollection.snapshotChanges().map( collection => {
+      return collection.map(document => {
+        const data = document.payload.doc.data() as Order;
+        data.id = document.payload.doc.id;
+
+        return data;
+      });
+    });
+  }
+
   addNewOrder(order) {
     return this.ordersCollection.add(order);
   }

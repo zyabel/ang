@@ -7,9 +7,12 @@ interface CheckoutItem {
 }
 
 export interface Order {
+  id?: string;
   name: string;
   phone: string;
   email: string;
   items: CheckoutItem[];
   status: string;
+  total: number;
+  isEdit?: boolean;
 }

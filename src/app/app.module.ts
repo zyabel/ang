@@ -27,6 +27,7 @@ import { CurrencyComponent } from './components/currency/currency.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { ClientHomeComponent } from './components/client-home/client-home.component';
 import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
+import { OrdersListComponent } from './components/orders-list/orders-list.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { ClientCheckoutComponent } from './components/client-checkout/client-che
     BasketComponent,
     ClientHomeComponent,
     ClientCheckoutComponent,
+    OrdersListComponent,
    ],
   imports: [
     BrowserModule,

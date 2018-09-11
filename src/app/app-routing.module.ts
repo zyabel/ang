@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ClientHomeComponent } from './components/client-home/client-home.component';
 import { ClientCheckoutComponent } from './components/client-checkout/client-checkout.component';
+import { OrdersListComponent } from './components/orders-list/orders-list.component';
 
 const routes: Routes = [
   { path: '', component: ClientHomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'panel', component: PanelComponent, canActivate: [AuthGuard] },
+  { path: 'orders', component: OrdersListComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'addbook', component: AddBookComponent, canActivate: [AuthGuard]  },
   { path: 'books/:id', component: EditBookComponent, canActivate: [AuthGuard] },

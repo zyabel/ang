@@ -32,7 +32,7 @@ export class BooksService {
   }
 
   addBook(book) {
-    this.books.push(book);
+    return this.booksCollection.add(book);
   }
 
   editBook(book) {
