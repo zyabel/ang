@@ -24,13 +24,15 @@ export class AddBookComponent implements OnInit {
     this.newId = this.idService.generate();
   }
 
-  addBook(name: string, description: string, author: string, link1: string, link2: string) {
+  addBook(name: string, description: string, author: string, price: number, data, link1: string, link2: string) {
     this.newBook = {
       id: this.newId,
       name: name,
       description: description,
       author: author,
-      link: [
+      price: Number(price),
+      data: data,
+      links: [
         {
           type: 'epub',
           link: link1

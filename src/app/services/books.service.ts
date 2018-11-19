@@ -31,6 +31,10 @@ export class BooksService {
     return this.books;
   }
 
+  getBookById(id: string) {
+    return this.booksCollection.doc(id).valueChanges();
+  }
+
   addBook(book) {
     return this.booksCollection.add(book);
   }
@@ -40,7 +44,7 @@ export class BooksService {
   }
 
   deleteBook(id: string) {
-    this.books = this.books.filter( book => book.id !== id);
-    return of(this.books);
+    this.bookDoc = this.booksCollection.doc(id);
+    this.bookDoc.delete();
   }
 }

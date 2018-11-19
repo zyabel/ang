@@ -8,7 +8,7 @@ export interface Book {
   name: string;
   author: string;
   description: string;
-  link: BookLinks[];
+  links: BookLinks[];
   price: number;
   data: string;
   isAddBasket?: boolean;
